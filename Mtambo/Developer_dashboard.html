@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Developer Dashboard for Building Management">
+        <title>Developer Dashboard · M-TAMBO</title>
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="dashboard.css" rel="stylesheet">
+        <style>
+        .card-header {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
+        .badge-custom {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .badge-custom:hover {
+            background-color: #0056b3;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .section-title {
+            margin-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .sidebar-link {
+            color: #007bff;
+        }
+
+        .sidebar-link:hover {
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        .filter-section {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+    </head>
+    <body>
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"><a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">M-TAMBO</a>
+            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+            </button>
+            <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap"><a class="nav-link" href="#">Sign out</a>
+                </li>
+            </ul>
+        </header>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Sidebar for Secondary Links -->
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                    <div class="position-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a class="nav-link sidebar-link" href="#"> <span data-feather="home"></span>
+                                Buildings </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link sidebar-link" href="#"> <span data-feather="briefcase"></span>
+                                Maintenance Companies </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link sidebar-link" href="#"> <span data-feather="calendar"></span>
+                                Calendar </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link sidebar-link" href="#"> <span data-feather="file-text"></span>
+                                Maintenance Logs </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- Main Content Area -->
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Developer Dashboard</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <button type="button" class="btn btn-sm btn-custom">Add Building</button>
+                            <button type="button" class="btn btn-sm btn-custom">Add Maintenance Company</button>
+                            <button type="button" class="btn btn-sm btn-custom">Add Equipment</button>
+                        </div>
+                    </div>
+                    <!-- Filter Jobs by Date -->
+                    <div class="filter-section">
+                        <label for="filter-date" class="me-2">Filter Jobs by Date:</label>
+                        <input type="date" id="filter-date" class="form-control w-auto me-2">
+                        <button type="button" class="btn btn-sm btn-custom">Filter</button>
+                    </div>
+                    <!-- Today's Upcoming Jobs -->
+                    <div class="section-title">Today's Upcoming Jobs</div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">Jobs Scheduled for Today</div>
+                                <div class="card-body">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Building</th>
+                                                <th>Type of Job</th>
+                                                <th>Company</th>
+                                                <th>Technician</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Building A</td>
+                                                <td>HVAC Repair</td>
+                                                <td>Cooling Experts Inc.</td>
+                                                <td>John Doe</td>
+                                                <td><span class="badge badge-custom">Pending</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-custom">View Details</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Building B</td>
+                                                <td>Elevator Maintenance</td>
+                                                <td>LiftUp Services</td>
+                                                <td>Jane Smith</td>
+                                                <td><span class="badge badge-custom">Completed</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-custom">Download Log</button>
+                                                </td>
+                                            </tr>
+                                            <!-- Additional job entries... -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Weekly Upcoming Jobs Calendar -->
+                    <div class="section-title">Weekly Upcoming Jobs Calendar</div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">Jobs for This Week</div>
+                                <div class="card-body">
+                                    <!-- Calendar display for weekly jobs -->
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Building</th>
+                                                <th>Type of Job</th>
+                                                <th>Company</th>
+                                                <th>Technician</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Mon, Aug 30</td>
+                                                <td>Building A</td>
+                                                <td>HVAC Repair</td>
+                                                <td>Cooling Experts Inc.</td>
+                                                <td>John Doe</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tue, Aug 31</td>
+                                                <td>Building C</td>
+                                                <td>Electrical Inspection</td>
+                                                <td>Electro Services</td>
+                                                <td>Mike Johnson</td>
+                                            </tr>
+                                            <!-- Additional calendar entries... -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <!-- Bootstrap JavaScript -->
+        <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Feather Icons -->
+        <script src="https://unpkg.com/feather-icons"></script>
+        <script>
+        feather.replace()
+    </script>
+    </body>
+</html>
