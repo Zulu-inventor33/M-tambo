@@ -1,81 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Pinegrow Web Editor - SAAS Bootstrap v5 Template">
-    <meta name="author" content="">
-    <title>Pinegrow | Bootstrap Blocks Template</title>
-    <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='blocks.css') }}">
-    <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
-    <!-- Additional styles -->
-    {% block head %}{% endblock %}
-</head>
-<body class="fw-light text-secondary">
-    <!-- Navbar -->
-    <nav class="bg-secondary navbar navbar-expand-lg navbar-light py-lg-1">
-        <div class="container">
-            <a class="fw-bold navbar-brand text-primary" href="{{ url_for('index') }}">M-TAMBO</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown-3" aria-controls="navbarNavDropdown-3" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown-3">
-                <ul class="ms-auto navbar-nav">
-                    <li class="nav-item">
-                        <a class="active link-light nav-link px-lg-3 py-lg-4" aria-current="page" href="{{ url_for('index') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="background-cover link-light nav-link px-lg-3 py-lg-4" href="{{ url_for('about') }}">About us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="link-light nav-link px-lg-3 py-lg-4" href="{{ url_for('dashboard') }}">Dashboard</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="dropdown-toggle link-light nav-link px-lg-3 py-lg-4" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Services
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{{ url_for('elevators') }}">Elevators</a>
-                            <a class="dropdown-item" href="{{ url_for('generators') }}">Power Back-up Generators</a>
-                            <a class="dropdown-item" href="{{ url_for('hvac') }}">HVAC systems</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="link-light nav-link px-lg-3 py-lg-4" href="{{ url_for('contact') }}">Contact Us</a>
-                    </li>
-                </ul>
-                {% if current_user.is_authenticated %}
-                    <a class="btn btn-danger ms-lg-3" href="{{ url_for('logout') }}">Log Out</a>
-                {% else %}
-                    <a class="btn btn-primary ms-lg-3" href="{{ url_for('login') }}">Log In</a>
-                    <a class="btn btn-primary ms-lg-3" href="{{ url_for('signup') }}">Sign up</a>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
-    <!-- Main Content -->
-    <section class="bg-light pt-5 text-center">
-        <div class="container">
-            <div class="pt-5 row">
-                <div class="col-lg-8 col-xl-6 mx-auto">
-                    <h1 class="display-4 fw-normal mb-3 text-dark">Revolutionize Your Maintenance Management using the M-TAMBO CMMS</h1>
-                    <h2 class="fw-light mb-4">M-TAMBO is a computerized maintenance management tool that makes it simple to oversee and maintain your HVAC systems, elevators, and backup power generators from a single, integrated platform. Designed for ease of use, it streamlines your operations by allowing you to track, schedule and document maintenance issues efficiently, all in one place.</h2>
-                    <a href="#" class="btn btn-primary fw-light pb-2 ps-3 pe-3 pt-2">Get Started</a>
-                    <a href="#" class="btn btn-secondary fw-light pb-2 ps-3 pe-3 pt-2">Learn More</a>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Pinegrow Web Editor - SAAS Bootstrap v5 Template">
+        <meta name="author" content="">
+        <title>Pinegrow | Bootstrap Blocks Template</title>
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="blocks.css">
+        <!-- Custom styles for this template -->
+        <link href="./style.css" rel="stylesheet">
+    </head>
+    <body class="fw-light text-secondary">
+        <nav class="bg-secondary navbar navbar-expand-lg navbar-light py-lg-1"> 
+            <div class="container"> <a class="fw-bold navbar-brand text-primary" href="#" target>M-TAMBO</a> 
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown-3" aria-controls="navbarNavDropdown-3" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> 
+                </button>                 
+                <div class="collapse navbar-collapse " id="navbarNavDropdown-3"> 
+                    <ul class="ms-auto navbar-nav"> 
+                        <li class="nav-item"> <a class="active link-light nav-link px-lg-3 py-lg-4" aria-current="page" href="#">Home</a> 
+                        </li>                         
+                        <li class="nav-item"> <a class="background-cover link-light nav-link px-lg-3 py-lg-4" href="#">About us</a> 
+                        </li>                         
+                        <li class="nav-item"> <a class="link-light nav-link px-lg-3 py-lg-4" href="#">Dashboard</a> 
+                        </li>                         
+                        <li class="nav-item dropdown"> <a class="dropdown-toggle link-light nav-link px-lg-3 py-lg-4" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                                     Services </a> 
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"> <a class="dropdown-item" href="#">Elevators</a> <a class="dropdown-item" href="#">Power Back-up Generators</a> <a class="dropdown-item" href="#">HVAC stystems</a> 
+                            </div>                             
+                        </li>                         
+                        <li class="nav-item"> <a class="link-light nav-link px-lg-3 py-lg-4" href="#">Contact Us</a> 
+                        </li>                         
+                    </ul>                     <a class="btn btn-primary ms-lg-3" href="./login.html">Log In</a>
+                    <a class="btn btn-primary ms-lg-3" href="./signup.html">Sign up</a>
+                </div>                 
+            </div>             
+        </nav>
+        <section class="bg-light pt-5 text-center">
+            <div class="container">
+                <div class="pt-5 row">
+                    <div class="col-lg-8 col-xl-6 mx-auto">
+                        <h1 class="display-4 fw-normal mb-3 text-dark">Revolutionize Your Maintenance Management using the M-TAMBO CMMS</h1>
+                        <h2 class="fw-light mb-4">M-TAMBO is a computerized maintenance management tool that makes it simple to oversee and maintain your HVAC systems, elevators, and backup power generators from a single, integrated platform. Designed for ease of use, it streamlines your operations by allowing you to track, schedule and document maintenance issues efficiently, all in one place.</h2>
+                        <a href="#" class="btn btn-primary fw-light pb-2 ps-3 pe-3 pt-2">Get Started</a>
+                        <a href="#" class="btn btn-secondary fw-light pb-2 ps-3 pe-3 pt-2">Learn More</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
         <div class="bg-dark">
             <svg viewBox="0 0 100 100" preserveAspectRatio="none" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" height="80" width="100%" class="bg-secondary d-block text-white">
                 <path d="M 100 100 V 0 L 0 100"/>
             </svg>
             <div class="row">
-                <img src="{{ url_for('static', filename='images/lift1.jpg') }}" alt="Lift Image">
+                <img src="images/lift1.jpg"/>
             </div>
         </div>
         <section class="pb-5 pt-5 text-center"> 
@@ -102,7 +81,7 @@
             <div class="container pb-4 pt-4"> 
                 <div class="align-items-center row"> 
                     <div class="col-lg-6 ms-auto order-lg-2 py-3 text-center"> 
-                        <img src="{{ url_for('static', filename='images/generator1.png') }}" alt="Generator Image">
+                        <img src="images/generator1.png"/> 
                     </div>                     
                     <div class="col-lg-5 order-lg-1 py-3"> 
                         <h2 class="fw-normal h1 mb-2 text-dark">We analyze our services from every direction</h2>
@@ -334,7 +313,7 @@
                 </div>                 
             </div>             
         </footer>
-        <script src="static/assets/js/popper.min.js"></script>
-        <script src="static/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
