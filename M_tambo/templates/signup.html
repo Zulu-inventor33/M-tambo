@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center login-page-body">
+    <div class="login-container">
+        <label for="show" class="close-btn fas fa-times" title="close"></label>
+        <div class="text">Signup Form</div>
+        <form action="{{ url_for('signup') }}" method="post" onsubmit="return validatePassword()">
+            <div class="data">
+                <label for="first_name">First Name<span class="required">*</span>:</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div class="data">
+                <label for="last_name">Last Name<span class="required">*</span>:</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            <div class="data">
+                <label for="email">Email<span class="required">*</span>:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="data">
+                <label for="phone_number">Phone Number<span class="required">*</span>:</label>
+                <input type="tel" id="phone_number" name="phone_number" required>
+            </div>
+            <div class="form-group data">
+                <label for="password">Password<span class="required">*</span>:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group data">
+                <label for="confirm_password">Confirm Password<span class="required">*</span>:</label>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+            </div>
+            <div id="password-error" class="error-message">Passwords do not match.</div>
+            <div class="data">
+                <label for="accountType">You are registering to M-TAMBO as?<span class="required">*</span>:</label>
+                <select id="accountType" name="accountType" onchange="handleAccountTypeChange()" required>
+                    <option value="" disabled selected>Account Type</option>
+                    <option value="developer">Developer/Building Owner</option>
+                    <option value="maintenance">Maintenance Provider</option>
+                    <option value="technician">Technician</option>
+                </select>
+            </div>
+
+            <!-- Developer/Building Owner Fields -->
+            <div id="developer-fields" class="additional-fields" style="display: none;">
+                <div class="data">
+                    <label for="developer_name">Developer Name/Individual Name<span class="required">*</span>:</label>
+                    <input type="text" id="developer_name" name="developer_name">
+                </div>
+                <div class="data">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address">
+                </div>
+            </div>
+
+            <!-- Maintenance Provider Fields -->
+            <div id="maintenance-fields" class="additional-fields" style="display: none;">
+                <div class="data">
+                    <label for="specialization">Equipment Specialization<span class="required">*</span>:</label>
+                    <select id="specialization" name="specialization">
+                        <option value="" disabled selected>Select Equipment</option>
+                        <option value="hvac">HVAC</option>
+                        <option value="elevators">Elevators</option>
+                        <option value="generators">Power Back-up Generators</option>
+                    </select>
+                </div>
+                <div class="data">
+                    <label for="company_name">Company Name<span class="required">*</span>:</label>
+                    <input type="text" id="company_name" name="company_name">
+                </div>
+                <div class="data">
+                    <label for="company_address">Company Address</label>
+                    <input type="text" id="company_address" name="company_address">
+                </div>
+                <div class="data">
+                    <label for="company_registration_number">Company Registration Number<span class="required">*</span>:</label>
+                    <input type="text" id="company_registration_number" name="company_registration_number">
+                </div>
+            </div>
+
+            <!-- Technician Fields -->
+            <div id="technician-fields" class="additional-fields" style="display: none;">
+                <div class="data">
+                    <label for="equip_specialization">Equipment Specialization<span class="required">*</span>:</label>
+                    <select id="equip_specialization" name="equip_specialization">
+                        <option value="" disabled selected>Select Equipment</option>
+                        <option value="generators">Generators</option>
+                        <option value="hvac">HVAC</option>
+                        <option value="lifts">Lifts</option>
+                    </select>
+                </div>
+                <div class="data">
+                    <label for="company_number">Company Registration Number of company you work for<span class="required">*</span>:</label>
+                    <input type="text" id="company_number" name="company_number">
+                </div>
+            </div>
+
+            <div class="btn">
+                <div class="inner"></div>
+                <button type="submit">Signup</button>
+            </div>
+            <div class="signup-link">
+                Already a member? <a href="{{ url_for('login') }}">Login here</a>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- JavaScript for handling account type change -->
+<script>
+    function handleAccountTypeChange() {
+        var accountType = document.getElementById('accountType').value;
+
+        // Hide all additional fields initially
+        document.querySelectorAll('.additional-fields').forEach(function (el) {
+            el.style.display = 'none'; // Hide all fields
+            // Remove required attribute from all additional fields
+            el.querySelectorAll('input, select').forEach(function (field) {
+                field.required = false; // Remove required attribute
+            });
+        });
+
+        // Show and add required attributes based on the selected account type
+        if (accountType === 'developer') {
+            var developerFields = document.getElementById('developer-fields');
+            developerFields.style.display = 'block';
+            developerFields.querySelectorAll('input').forEach(function (field) {
+                field.required = true;  // Set fields as required
+            });
+        } else if (accountType === 'maintenance') {
+            var maintenanceFields = document.getElementById('maintenance-fields');
+            maintenanceFields.style.display = 'block';
+            maintenanceFields.querySelectorAll('input, select').forEach(function (field) {
+                field.required = true;  // Set fields as required
+            });
+        } else if (accountType === 'technician') {
+            var technicianFields = document.getElementById('technician-fields');
+            technicianFields.style.display = 'block';
+            technicianFields.querySelectorAll('input, select').forEach(function (field) {
+                field.required = true;  // Set fields as required
+            });
+        }
+    }
+</script>
+{% endblock content %}
+

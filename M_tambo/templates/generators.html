@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+Generators Maintenance | M-TAMBO
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 generators-content">
+    <h1>Generators Maintenance with M-TAMBO</h1>
+    <p>Generators play a crucial role in ensuring a reliable power supply, especially in areas prone to outages. Regular maintenance is essential to keep generators operational and avoid costly downtime. M-TAMBO offers a comprehensive solution to manage and optimize generator maintenance for all stakeholders.</p>
+
+    <h2>1. Benefits for Developers/Building Owners</h2>
+    <p><strong>Comprehensive Tracking:</strong> M-TAMBO enables building owners to monitor the maintenance status and performance of generators across their facilities. This ensures generators are always ready to provide backup power when needed.</p>
+    <p><strong>Maintenance Logs:</strong> Access detailed logs of all maintenance activities performed on each generator, providing insights into their operational history and performance trends.</p>
+    <p><strong>Scheduled Maintenance:</strong> Schedule and track upcoming maintenance tasks to ensure compliance with operational standards and reduce the risk of unexpected failures.</p>
+    <p><strong>Downloadable Reports:</strong> Download maintenance logs and reports for auditing purposes, ensuring transparency and accountability.</p>
+    <p><strong>Service Provider Management:</strong> Monitor and manage the performance of maintenance companies handling generator services, ensuring high standards are met.</p>
+
+    <h2>2. Benefits for Maintenance Companies</h2>
+    <p><strong>Efficient Job Management:</strong> Use M-TAMBO’s integrated calendar to manage and schedule generator maintenance jobs, optimizing resource allocation and improving service delivery.</p>
+    <p><strong>Technician Oversight:</strong> Track technician assignments and performance to ensure timely completion of maintenance tasks and high-quality service.</p>
+    <p><strong>Job Status Updates:</strong> Update and manage job statuses in real-time, ensuring that all stakeholders are informed of progress and completion.</p>
+    <p><strong>Electronic Documentation:</strong> Generate and download electronic maintenance logs for accurate record-keeping and streamlined invoicing processes.</p>
+    <p><strong>Contractual Obligations:</strong> View and manage the list of facilities where the company is contracted, aiding in job planning and execution.</p>
+
+    <h2>3. Benefits for Technicians</h2>
+    <p><strong>Personalized Schedule:</strong> Access a detailed calendar of assigned generator maintenance tasks, helping technicians stay organized and on track.</p>
+    <p><strong>Streamlined Data Entry:</strong> Easily log maintenance activities and updates into the system, reducing administrative tasks and improving efficiency.</p>
+    <p><strong>Status Management:</strong> Update the status of maintenance jobs directly, keeping all parties informed about job progress and completion.</p>
+    <p><strong>Log Generation:</strong> Quickly generate and submit electronic maintenance logs, facilitating accurate documentation and reporting.</p>
+
+    <h2>System Features for Generator Maintenance</h2>
+    <ul>
+        <li><strong>Custom Dashboards:</strong> Tailored dashboards for building owners, maintenance companies, and technicians to access relevant data and perform tasks efficiently.</li>
+        <li><strong>Alerts and Reminders:</strong> Automated alerts for upcoming maintenance tasks, overdue jobs, and critical system updates.</li>
+        <li><strong>Data Analysis:</strong> Analyze maintenance data to detect patterns, anticipate potential issues, and optimize generator performance.</li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Additional scripts specific to this page can go here -->
+<script src="{{ url_for('static', filename='assets/js/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+{% endblock %}
+

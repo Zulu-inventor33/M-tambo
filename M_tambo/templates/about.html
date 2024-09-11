@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- About Us Content -->
+<div class="container mt-5">
+    <h1>About Us</h1>
+    <p>M-TAMBO Maintenance Tracking and Documentation Software</p>
+    <p><strong>Background</strong></p>
+    <p>With the rapid growth of high-rise developments across Africa, the need for efficient management of critical building systems like HVAC, elevators, and power backup is increasing. Developers and maintenance companies require a simple CMMS to track and maintain these systems effectively. A tailored CMMS would help streamline maintenance operations.</p>
+    <p><strong>Targeted Users:</strong></p>
+    <ul>
+        <li><strong>Developers/Building Owners:</strong> Building owners, including individual owners and large development companies, need tools to track systems, monitor maintenance companies, view maintenance schedules, and generate maintenance histories.</li>
+        <li><strong>Maintenance Companies:</strong> Small maintenance companies will benefit from an integrated calendar, job tracking, technician management, and the ability to generate and download maintenance logs.</li>
+        <li><strong>Technicians:</strong> Technicians require a maintenance calendar, job assignments, and the ability to log maintenance activities and generate electronic logs.</li>
+    </ul>
+    <p><strong>System Design:</strong></p>
+    <p>The CMMS system includes three primary dashboards for Developers/Building Owners, Maintenance Companies, and Technicians, each tailored to their specific needs, ensuring effective management of building systems.</p>
+    <p><strong>Sign-Up Pages:</strong></p>
+    <ul>
+        <li><strong>Developer/Building Owner:</strong> Allows for creating accounts with fields for company/individual name, contact details, and facilities information.</li>
+        <li><strong>Maintenance Company:</strong> Registers companies with fields for company details, contact information, and specialized equipment.</li>
+        <li><strong>Technician:</strong> Registers individual technicians with fields for personal details, company affiliation, and specializations.</li>
+    </ul>
+    <p><strong>Database Design:</strong></p>
+    <p>Includes tables for Developers/Building Owners, Maintenance Companies, Technicians, Buildings, Equipment, Maintenance Jobs, and Maintenance Logs. Ensures proper indexing, normalization, and security considerations.</p>
+</div>
+{% endblock %}
+{% block scripts %}
+<!-- Additional scripts specific to this page can go here -->
+<script src="{{ url_for('static', filename='assets/js/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+Elevators Maintenance | M-TAMBO
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 elevators-content">
+    <h1>Elevators Maintenance with M-TAMBO</h1>
+    <p>Elevators are critical components in modern high-rise buildings, providing essential vertical transportation. Proper maintenance of elevators ensures their safety, reliability, and efficiency. M-TAMBO, our comprehensive Maintenance Tracking and Documentation Software, offers a range of benefits for all parties involved in elevator maintenance.</p>
+
+    <h2>1. Benefits for Developers/Building Owners</h2>
+    <p><strong>Real-Time Tracking:</strong> M-TAMBO allows building owners to monitor the status and maintenance schedules of all elevators across their properties. This helps in identifying potential issues before they become serious problems.</p>
+    <p><strong>Maintenance History:</strong> Access detailed maintenance logs and history for each elevator, enabling building owners to track performance and service history over time.</p>
+    <p><strong>Maintenance Scheduling:</strong> Easily schedule and track upcoming maintenance tasks to ensure compliance with safety regulations and prevent unexpected breakdowns.</p>
+    <p><strong>Download Logs:</strong> Download electronic maintenance logs directly from the system for record-keeping, auditing, and insurance purposes.</p>
+    <p><strong>Monitoring Maintenance Companies:</strong> View and manage the maintenance companies responsible for servicing elevators, ensuring they meet performance standards and contractual obligations.</p>
+
+    <h2>2. Benefits for Maintenance Companies</h2>
+    <p><strong>Integrated Calendar:</strong> M-TAMBO provides an integrated calendar to manage and schedule all elevator maintenance jobs, ensuring efficient allocation of resources and timely service.</p>
+    <p><strong>Technician Tracking:</strong> Track the assignments and performance of technicians, ensuring that all tasks are completed as scheduled and with the required quality.</p>
+    <p><strong>Job Management:</strong> Manage and update job statuses, view details of each job, and communicate with building owners through the platform.</p>
+    <p><strong>Electronic Logs:</strong> Generate and download electronic maintenance logs to streamline invoicing and keep accurate records of all maintenance activities.</p>
+    <p><strong>Contract Management:</strong> View a list of all buildings where the company is contracted to perform maintenance, helping in planning and resource management.</p>
+
+    <h2>3. Benefits for Technicians</h2>
+    <p><strong>Maintenance Calendar:</strong> Access a personalized calendar to view and manage assigned elevator maintenance tasks, ensuring they stay organized and on schedule.</p>
+    <p><strong>Easy Data Entry:</strong> Enter maintenance activities and log details into the system quickly, reducing paperwork and administrative overhead.</p>
+    <p><strong>Job Status Updates:</strong> Update the status of maintenance jobs directly in the system, keeping all stakeholders informed of progress and completion.</p>
+    <p><strong>Generate Logs:</strong> Create and generate electronic maintenance logs with just a few clicks, making it easier to document and report on completed work.</p>
+
+    <h2>System Features for Elevator Maintenance</h2>
+    <ul>
+        <li><strong>Dashboard:</strong> Custom dashboards for building owners, maintenance companies, and technicians to access relevant information and perform tasks efficiently.</li>
+        <li><strong>Alerts and Notifications:</strong> Automated alerts and notifications for upcoming maintenance tasks, overdue jobs, and other critical events.</li>
+        <li><strong>Data Analytics:</strong> Analyze maintenance data to identify trends, predict potential issues, and improve overall elevator performance.</li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='assets/js/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+{% endblock %}

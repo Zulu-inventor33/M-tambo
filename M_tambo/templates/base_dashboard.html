@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Dashboard">
+    <title>{% block title %}Dashboard · M-TAMBO{% endblock %}</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- jQuery UI CSS for Date Picker -->
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='dashboard.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ url_for('index') }}">M-TAMBO</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="btn btn-danger ms-lg-3" class="nav-link" href="{{ url_for('logout') }}">Sign out</a>
+            </li>
+        </ul>
+    </header>
+
+    <!-- Flash Messages Section -->
+    <div class="container-fluid mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="row">
+                    <div class="col">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Main Container -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar Section -->
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#"> <span data-feather="home"></span> Dashboard </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="briefcase"></span> Job Management </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="file-text"></span> Reports </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="users"></span> Technicians </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="bell"></span> Alerts </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="settings"></span> Settings </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="check-circle"></span> Completed Jobs </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="building"></span> Buildings </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="calendar"></span> Upcoming Jobs </a></li>
+                        <!-- New Calendar Link -->
+                        <li class="nav-item"><a class="nav-link calendar-link" href="#"> <span data-feather="calendar"></span> Calendar </a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content Section -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                {% block content %}
+                <!-- Default content will be overridden by child templates -->
+                {% endblock %}
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- jQuery and jQuery UI for Date Picker -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        feather.replace();
+
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+
+        $("#filterJobsBtn").on("click", function () {
+            var selectedDate = $("#datepicker").val();
+            alert("Filter jobs by: " + selectedDate);
+            // Add logic to filter jobs based on selected date
+        });
+    </script>
+</body>
+</html>

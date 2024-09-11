@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Maintenance Company Dashboard">
+    <title>Maintenance Company Dashboard · M-TAMBO</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- jQuery UI CSS for Date Picker -->
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='dashboard.css') }}" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{url_for('index')}}">M-TAMBO</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap"><a class="btn btn-danger ms-lg-3" class="nav-link" href="{{ url_for('logout') }}">Sign out</a></li>
+        </ul>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#"> <span data-feather="home"></span> Dashboard </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="briefcase"></span> Job Management </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="file-text"></span> Reports </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="users"></span> Technicians </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="bell"></span> Alerts </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="settings"></span> Settings </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="check-circle"></span> Completed Jobs </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="building"></span> Buildings </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <span data-feather="calendar"></span> Upcoming Jobs </a></li>
+                        <!-- New Calendar Link -->
+                        <li class="nav-item"><a class="nav-link calendar-link" href="#"> <span data-feather="calendar"></span> Calendar </a></li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Maintenance Company Dashboard</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <button type="button" class="btn btn-sm btn-custom">Add Building</button>
+                        <button type="button" class="btn btn-sm btn-custom">Add Equipment</button>
+                        <button type="button" class="btn btn-sm btn-custom">Add Technician</button>
+                    </div>
+                </div>
+                <!-- Job Filtering by Date -->
+                <div class="filter-container">
+                    <h5>Filter Jobs by Date:</h5>
+                    <div class="filter-section">
+                        <label for="filter-date" class="me-2">Filter Jobs by Date:</label>
+                        <input type="date" id="filter-date" class="form-control w-auto me-2">
+                        <button type="button" class="btn btn-sm btn-custom">Filter</button>
+                    </div>
+                </div>
+                <!-- Technician Activity Tracker -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">Technician Activity Tracker</div>
+                            <div class="card-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Technician</th>
+                                            <th>Jobs Completed</th>
+                                            <th>Jobs Pending</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for technician in technicians %}
+                                        <tr>
+                                            <td>{{ technician.name }}</td>
+                                            <td>{{ technician.jobs_completed }}</td>
+                                            <td>{{ technician.jobs_pending }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-sm btn-custom">View Detailed Report</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Today's Jobs Section -->
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">Today's Jobs</div>
+                            <div class="card-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Job ID</th>
+                                            <th>Building</th>
+                                            <th>Technician</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for job in todays_jobs %}
+                                        <tr>
+                                            <td>{{ job.id }}</td>
+                                            <td>{{ job.building }}</td>
+                                            <td>{{ job.technician }}</td>
+                                            <td><span class="badge bg-{{ job.status_class }}">{{ job.status }}</span></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-sm btn-custom">Assign Job</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Weekly Jobs Section -->
+                <div class="card mb-4">
+                    <div class="card-header">Weekly Jobs</div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Job ID</th>
+                                    <th>Building</th>
+                                    <th>Description</th>
+                                    <th>Technician</th>
+                                    <th>Schedule</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for job in weekly_jobs %}
+                                <tr>
+                                    <td>{{ job.id }}</td>
+                                    <td>{{ job.building }}</td>
+                                    <td>{{ job.description }}</td>
+                                    <td>{{ job.technician }}</td>
+                                    <td>{{ job.schedule }}</td>
+                                    <td><span class="badge bg-{{ job.status_class }}">{{ job.status }}</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-custom">{{ job.action }}</button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- jQuery and jQuery UI for Date Picker -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        feather.replace();
+
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+
+        $("#filterJobsBtn").on("click", function () {
+            var selectedDate = $("#datepicker").val();
+            alert("Filter jobs by: " + selectedDate);
+            // Add logic to filter jobs based on selected date
+        });
+    </script>
+</body>
+</html>

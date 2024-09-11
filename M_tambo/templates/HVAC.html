@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}HVAC Systems Maintenance | M-TAMBO{% endblock %}
+
+{% block content %}
+<div class="container mt-5 hvac-content">
+    <h1>HVAC Systems Maintenance with M-TAMBO</h1>
+    <p>HVAC systems are essential for maintaining comfortable indoor environments in buildings. Regular maintenance of HVAC systems is crucial to ensure they operate efficiently and effectively, minimizing downtime and extending their lifespan. M-TAMBO provides a comprehensive solution to manage HVAC maintenance for all involved parties.</p>
+
+    <h2>1. Benefits for Developers/Building Owners</h2>
+    <p><strong>Efficient Tracking:</strong> M-TAMBO allows building owners to monitor the maintenance and performance of HVAC systems across their properties, ensuring optimal operation and comfort.</p>
+    <p><strong>Maintenance Logs:</strong> Access detailed maintenance logs for each HVAC system, offering transparency into the history and performance of each unit.</p>
+    <p><strong>Scheduled Maintenance:</strong> Manage and schedule regular maintenance tasks to prevent system failures and ensure consistent performance.</p>
+    <p><strong>Downloadable Reports:</strong> Obtain maintenance logs and performance reports for auditing and compliance purposes.</p>
+    <p><strong>Service Provider Management:</strong> Oversee and evaluate the performance of maintenance companies responsible for HVAC system upkeep, ensuring high standards of service.</p>
+
+    <h2>2. Benefits for Maintenance Companies</h2>
+    <p><strong>Integrated Job Management:</strong> Use M-TAMBO’s integrated calendar to schedule and manage HVAC maintenance jobs efficiently, improving service delivery and resource allocation.</p>
+    <p><strong>Technician Supervision:</strong> Track technician assignments and performance, ensuring tasks are completed on time and to a high standard.</p>
+    <p><strong>Real-Time Status Updates:</strong> Update and manage the status of HVAC maintenance jobs, keeping all stakeholders informed of progress and completion.</p>
+    <p><strong>Electronic Documentation:</strong> Generate and download electronic maintenance logs for accurate record-keeping and streamlined invoicing.</p>
+    <p><strong>Facility Management:</strong> View and manage the list of buildings where the company provides HVAC maintenance services, aiding in job planning and execution.</p>
+
+    <h2>3. Benefits for Technicians</h2>
+    <p><strong>Organized Schedule:</strong> Access a comprehensive calendar of assigned HVAC maintenance tasks, helping technicians stay organized and manage their workload effectively.</p>
+    <p><strong>Streamlined Data Entry:</strong> Easily log maintenance activities and updates into the system, reducing paperwork and enhancing efficiency.</p>
+    <p><strong>Status Updates:</strong> Update the status of maintenance jobs directly, ensuring accurate tracking and communication with other stakeholders.</p>
+    <p><strong>Log Generation:</strong> Quickly generate and submit electronic maintenance logs for accurate documentation and reporting.</p>
+
+    <h2>System Features for HVAC Maintenance</h2>
+    <ul>
+        <li><strong>Custom Dashboards:</strong> Tailored dashboards for building owners, maintenance companies, and technicians to manage HVAC systems and maintenance tasks efficiently.</li>
+        <li><strong>Alerts and Notifications:</strong> Automated alerts for upcoming maintenance tasks, overdue jobs, and critical system updates to ensure timely actions.</li>
+        <li><strong>Data Analysis:</strong> Analyze maintenance data to detect patterns, predict potential issues, and optimize HVAC system performance.</li>
+    </ul>
+</div>
+{% endblock %}
+{% block scripts %}
+<!-- Additional scripts specific to this page can go here -->
+<script src="{{ url_for('static', filename='assets/js/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+{% endblock %}
