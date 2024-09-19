@@ -1,0 +1,34 @@
+{% extends 'maintenance_base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Completed Jobs</h1>
+    {% if no_jobs_message %}
+        <p>{{ no_jobs_message }}</p>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Assigned Date</th>
+                    <th>Completed Date</th>
+                    <th>Technician</th>
+                    <th>Building</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in jobs %}
+                <tr>
+                    <td>{{ job.description }}</td>
+                    <td>{{ job.assigned_date }}</td>
+                    <td>{{ job.completed_date }}</td>
+                    <td>{{ job.technician }}</td>
+                    <td>{{ job.building }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}
+

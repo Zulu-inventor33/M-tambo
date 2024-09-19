@@ -1,0 +1,39 @@
+{% extends "maintenance_base.html" %}
+
+{% block title %}Job Management{% endblock %}
+
+{% block content %}
+    <h1 class="h2">Job Management</h1>
+
+    <!-- Job Table -->
+    <div class="table-responsive mt-3">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Building</th>
+                    <th>Technician</th>
+                    <th>Scheduled Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in jobs %}
+                    <tr>
+                        <td>{{ job.id }}</td>
+                        <td>{{ job.description }}</td>
+                        <td>{{ job.building.name }}</td>
+                        <td>{{ job.technician.user.first_name }} {{ job.technician.user.last_name }}</td>
+                        <td>{{ job.scheduled_date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ job.status }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center">No jobs found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

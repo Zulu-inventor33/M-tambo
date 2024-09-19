@@ -1,0 +1,19 @@
+<!-- add_equipment_select_building.html -->
+<h3>Add Equipment</h3>
+<form method="POST" action="{{ url_for('submit_equipment') }}">
+    <select name="buildingId" required>
+        {% for building in buildings %}
+        <option value="{{ building.id }}">{{ building.name }}</option>
+        {% endfor %}
+    </select>
+    <select name="equipmentType" required>
+        <option value="elevators">Elevator</option>
+        <option value="hvac">HVAC</option>
+        <option value="generators">Power Generator</option>
+    </select>
+    <input type="text" name="equipmentUsername" placeholder="Equipment Username" required>
+    <input type="text" name="serialNumber" placeholder="Serial Number" required>
+    <input type="date" name="installationDate" placeholder="Installation Date" required>
+    <textarea name="equipmentDetails" placeholder="Additional Details"></textarea>
+    <button type="submit">Add Equipment</button>
+</form>

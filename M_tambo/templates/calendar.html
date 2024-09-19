@@ -1,0 +1,41 @@
+{% extends 'maintenance_base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Job Calendar</h1>
+    <div id="calendar"></div>
+</div>
+
+<!-- FullCalendar CSS -->
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.css' rel='stylesheet' />
+
+<!-- FullCalendar JS -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.js'></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: {{ events|tojson|safe }},
+            eventClick: function(info) {
+                alert('Job ID: ' + info.event.id + '\n' +
+                      'Description: ' + info.event.title + '\n' +
+                      'Start: ' + info.event.start.toLocaleString() + '\n' +
+                      'End: ' + info.event.end.toLocaleString() + '\n' +
+                      'Technician: ' + info.event.extendedProps.technician + '\n' +
+                      'Building: ' + info.event.extendedProps.building);
+            },
+            editable: false,
+            selectable: true
+        });
+
+        calendar.render();
+    });
+</script>
+{% endblock %}

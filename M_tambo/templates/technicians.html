@@ -1,0 +1,33 @@
+{% extends 'maintenance_base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1><span class="company_name">{{ maintenance_company_name }} </span>- Technicians</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Last Job Assigned</th>
+                <th>Last Job Completed</th>
+                <th>Jobs Completed</th>
+                <th>Jobs Pending</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tech in technicians %}
+            <tr>
+                <td>{{ tech.name }}</td>
+                <td>{{ tech.last_assigned_job if tech.last_assigned_job else 'NULL' }}</td>
+                <td>{{ tech.last_completed_job if tech.last_completed_job else 'NULL' }}</td>
+                <td>{{ tech.jobs_completed }}</td>
+                <td>{{ tech.jobs_pending }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+
+
+

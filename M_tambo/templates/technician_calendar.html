@@ -1,0 +1,60 @@
+{% extends 'Technician_base_Dashboard.html' %}
+
+{% block title %}Monthly Calendar{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ current_user.first_name }} {{ current_user.last_name }}'s Monthly Calendar</h1>
+    <h2>{{ today.strftime('%B %Y') }}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set current_date = today.replace(day=1) %}
+                {% set start_day = current_date.weekday() %}
+                {% set days_in_month = (current_date + timedelta(days=32)).replace(day=1) - timedelta(days=1) %}
+                
+                <tr>
+                    {% for _ in range(start_day) %}
+                        <td></td>
+                    {% endfor %}
+                    {% for day in range(1, days_in_month.day + 1) %}
+                        {% if (day + start_day - 1) % 7 == 0 and day != 1 %}
+                            </tr><tr>
+                        {% endif %}
+                        {% set job_for_day = jobs | selectattr('scheduled_date', 'equalto', current_date.replace(day=day)) | list %}
+                        <td>
+                            <strong>{{ day }}</strong>
+                            {% for job in job_for_day %}
+                                <div class="job-status">
+                                    <div style="color: blue;"><strong>{{ job.building.name }}</strong></div>
+                                    {% if job.status == 'Pending' %}
+                                        <span class="badge bg-warning">Pending</span>
+                                    {% elif job.status == 'Overdue' %}
+                                        <span class="badge bg-danger">Overdue</span>
+                                    {% elif job.status == 'Completed' %}
+                                        <span class="badge bg-success">Completed</span>
+                                    {% endif %}
+                                    <div>{{ job.description }}</div>
+                                </div>
+                            {% endfor %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+

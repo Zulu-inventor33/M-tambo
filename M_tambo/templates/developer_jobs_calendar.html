@@ -1,0 +1,60 @@
+{% extends "developer_base.html" %}
+
+{% block title %}Jobs Calendar - {{ current_user.first_name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Jobs Calendar for {{ month }} / {{ year }}</h1>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set start_day = days[0].weekday() %}
+                {% for week in range(6) %}
+                <tr>
+                    {% for day in range(7) %}
+                    {% set day_number = week * 7 + day - start_day %}
+                    {% if day_number >= 0 and day_number < days|length %}
+                        {% set current_day = days[day_number] %}
+                        <td>
+                            <strong>{{ current_day.day }}</strong>
+                            <ul class="list-unstyled">
+                                {% for job in jobs %}
+                                    {% if job.scheduled_date.strftime('%Y-%m-%d') == current_day.strftime('%Y-%m-%d') %}
+                                    <li>
+                                        <strong>Building:</strong> {{ job.building_name }}<br>
+                                        <strong>Technician:</strong> {{ job.technician_name }}<br>
+                                        <strong>Status:</strong>
+                                        <span class="badge badge-{{ 'success' if job.status == 'Completed' else 'warning' if job.status == 'Pending' else 'danger' }}">
+                                            {{ job.status }}
+                                        </span><br>
+                                        <strong>Description:</strong> {{ job.description }}
+                                    </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+

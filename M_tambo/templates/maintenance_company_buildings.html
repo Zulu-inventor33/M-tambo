@@ -1,0 +1,93 @@
+{% extends 'maintenance_base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Buildings for {{ maintenance_company.company_name }}</h1>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Buildings List</div>
+                <div class="card-body">
+                    {% if building_data %}
+                    {% for data in building_data %}
+                    <hr>
+                    <div class="mb-4">
+                        <h3><span class="company_name">{{ data.building.name }}</span></h3>
+                        <p>Address: {{ data.building.address }}, {{ data.building.city }}, {{ data.building.state }}, {{ data.building.zip_code }}</p>
+
+                        <!-- Equipment List -->
+                        <div class="mb-3">
+                            <h4>Equipment</h4>
+                            {% if data.equipment %}
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Equipment ID</th>
+                                        <th>Equipment Type</th>
+                                        <th>Equipment Installation Date</th>
+                                        <th>Equipment Name</th>
+                                        <th>Serial Number</th>
+                                        <th>Additional Equipment details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in data.equipment %}
+                                    <tr>
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.type }}</td>
+                                        <td>{{ item.installation_date}}</td>
+                                        <td>{{ item.username }}</td>
+                                        <td>{{ item.serial_number }}</td>
+                                        <td>{{ item.additional_details}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {% else %}
+                            <p>No equipment found for this building.</p>
+                            {% endif %}
+                        </div>
+
+                        <!-- Jobs List -->
+                        <div class="mb-3">
+                            <h4>Jobs</h4>
+                            {% if data.jobs %}
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Job ID</th>
+                                        <th>Job Description</th>
+                                        <th>Scheduled Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for job in data.jobs %}
+                                    <tr>
+                                        <td>{{ job.id }}</td>
+                                        <td>{{ job.description }}</td>
+                                        <td>{{ job.scheduled_date }}</td>
+                                        <td><span class="badge bg-{{ job.status.lower() }}">{{ job.status }}</span></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {% else %}
+                            <p>No jobs scheduled for this building.</p>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <p>No buildings found for this maintenance company.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

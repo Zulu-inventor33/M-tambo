@@ -172,3 +172,166 @@ body {
   display: flex;
   align-items: center;
 }
+
+.building_name {
+  color: red;
+}
+.bg-pending {
+  background-color: #f0ad4e; /* Orange */
+}
+
+.bg-completed {
+  background-color: #5bc0de; /* Light Blue */
+}
+
+.bg-overdue {
+  background-color: #d9534f; /* Red */
+}
+
+.bg-canceled {
+  background-color: #777; /* Grey */
+}
+.company_name {
+  color: red;
+}
+/* Technician_Dashboard styling*/
+body {
+  background-color: #f8f9fa; /* Light background color for Technician Dashboard */
+}
+.navbar {
+  background-color: #007bff; /* Blue color for header */
+}
+.navbar-brand {
+  font-weight: bold;
+  color: #ffffff;
+}
+.navbar-nav .nav-link {
+  color: #ffffff;
+}
+.navbar-nav .nav-link.active {
+  color: #ffffcc;
+}
+.btn-custom {
+  background-color: #007bff;
+  color: #ffffff;
+}
+.btn-custom:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+}
+.sidebar {
+  background-color: #e9ecef; /* Light grey for sidebar */
+}
+.card-header {
+  background-color: #007bff; /* Blue color for card headers */
+  color: #ffffff;
+}
+.table thead th {
+  background-color: #e9ecef; /* Light grey for table headers */
+}
+.calendar {
+  border: 1px solid #007bff; /* Blue border for calendar */
+}
+.alert {
+  background-color: #e9ecef; /* Light grey for alerts */
+}
+/* Alerts section in the Technician Page Styling */
+.alerts-section {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 5px;
+}
+.alerts-section h2 {
+  color: #333;
+}
+.alerts-section h3 {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+.alerts-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+.alerts-section li {
+  background-color: #ffffff;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.alerts-section .job-details {
+  font-size: 14px;
+  color: #666;
+}
+/* Developer Dashboard Styling */
+body {
+  background-color: #d1e7dd; /* Soft green background for the body */
+}
+header {
+  background-color: #ced4da; /* Greyish background for the header */
+}
+.navbar-dark .navbar-nav .nav-link {
+  color: #333; /* Dark grey text for navbar links */
+}
+.card-header {
+  background-color: #a5d6a7; /* Light green for card headers */
+  color: #333; /* Dark text for visibility */
+  font-weight: bold;
+}
+.btn-custom {
+  background-color: #198754; /* Bootstrap green for buttons */
+  color: white;
+  margin-right: 10px;
+}
+.btn-custom:hover {
+  background-color: #14532d; /* Darker green on hover */
+}
+.badge-custom {
+  background-color: #198754; /* Match badge color with buttons */
+  color: white;
+}
+.badge-custom:hover {
+  background-color: #14532d; /* Darker green on hover */
+}
+.section-title {
+  margin-bottom: 20px;
+  border-bottom: 2px solid #198754; /* Match section title with button color */
+  padding-bottom: 10px;
+  font-size: 1.5em;
+  color: #333; /* Dark text for visibility */
+}
+.sidebar-link {
+  color: #198754; /* Change sidebar link color */
+}
+.sidebar-link:hover {
+  color: #14532d; /* Darker green on hover */
+  text-decoration: none;
+}
+/* styling fo the developer dashboard Maintenance companies section */
+.badge-success {
+  background-color: #28a745; /* Green */
+  color: white;
+}
+.badge-warning {
+  background-color: #ffc107; /* Yellow */
+  color: black;
+}
+.badge-danger {
+  background-color: #dc3545; /* Red */
+  color: white;
+}
+.table th {
+  background-color: #f8f9fa; /* Light gray for table header */
+}
+.table td {
+  vertical-align: middle; /* Center-align table cells */
+}
+.card {
+  transition: transform 0.2s; /* Smooth card hover effect */
+}
+.card:hover {
+  transform: scale(1.02); /* Scale up on hover */
+}
