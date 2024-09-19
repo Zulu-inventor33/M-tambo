@@ -1,0 +1,44 @@
+{% extends "developer_base.html" %}
+
+{% block title %}Maintenance Logs - {{ current_user.first_name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Maintenance Logs for Your Buildings</h1>
+
+    {% if logs %}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Building</th>
+                        <th>Technician</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                        <th>Scheduled Date</th>
+                        <th>Completion Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                    <tr class="{{ 'table-success' if log.status == 'Completed' else 'table-warning' if log.status == 'Pending' else 'table-danger' }}">
+                        <td>{{ log.building_name }}</td>
+                        <td>{{ log.technician_name }}</td>
+                        <td>
+                            <span class="badge badge-{{ 'success' if log.status == 'Completed' else 'warning' if log.status == 'Pending' else 'danger' }}">
+                                {{ log.status }}
+                            </span>
+                        </td>
+                        <td>{{ log.description }}</td>
+                        <td>{{ log.scheduled_date }}</td>
+                        <td>{{ log.completion_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No maintenance logs found for your buildings.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "maintenance_base.html" %}
+
+{% block title %}Add Job{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">Create a Maintenance Task</h1>
+    <form method="post" action="{{ url_for('submit_job') }}">
+        <div class="mb-3">
+            <label for="jobDescription" class="form-label">Job Description</label>
+            <input type="text" class="form-control" id="jobDescription" name="description" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="buildingSelect" class="form-label">Select Building</label>
+            <select class="form-select" id="buildingSelect" name="building_id" required>
+                <option value="" disabled selected>Select a building</option>
+                {% for building in buildings %}
+                    <option value="{{ building.id }}">{{ building.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="technicianSelect" class="form-label">Select Technician</label>
+            <select class="form-select" id="technicianSelect" name="technician_id" required>
+                <option value="" disabled selected>Select a technician</option>
+                {% for technician in technicians %}
+                    <option value="{{ technician.user_id }}">{{ technician.user.first_name }} {{ technician.user.last_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="scheduledDate" class="form-label">Scheduled Date</label>
+            <input type="date" class="form-control" id="scheduledDate" name="scheduled_date" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Job</button>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(function() {
+            $("#scheduledDate").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+        });
+    </script>
+{% endblock %}

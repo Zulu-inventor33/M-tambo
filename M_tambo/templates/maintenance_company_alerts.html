@@ -1,0 +1,81 @@
+{% extends 'maintenance_base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Alerts for {{ maintenance_company.company_name }}</h1>
+    </div>
+
+    <!-- Today's Jobs -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Today's Jobs</div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Job ID</th>
+                                <th>Building</th>
+                                <th>Technician</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if todays_jobs %}
+                                {% for job in todays_jobs %}
+                                <tr>
+                                    <td>{{ job.id }}</td>
+                                    <td>{{ job.building.name }}</td>
+                                    <td>{{ job.technician.user.first_name }} {{ job.technician.user.last_name }}</td>
+                                    <td><span class="badge bg-{{ job.status.lower() }}">{{ job.status }}</span></td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">No jobs scheduled for today.</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overdue Jobs -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Overdue Jobs</div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Job ID</th>
+                                <th>Building</th>
+                                <th>Technician</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if overdue_jobs %}
+                                {% for job in overdue_jobs %}
+                                <tr>
+                                    <td>{{ job.id }}</td>
+                                    <td>{{ job.building.name }}</td>
+                                    <td>{{ job.technician.user.first_name }} {{ job.technician.user.last_name }}</td>
+                                    <td><span class="badge bg-overdue">{{ job.status }}</span></td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">No overdue jobs.</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

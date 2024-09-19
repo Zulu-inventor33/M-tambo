@@ -1,0 +1,52 @@
+{% extends 'maintenance_base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Add New Building</h1>
+    <form method="post" action="{{ url_for('submit_building') }}">
+        <div class="mb-3">
+            <label for="buildingName" class="form-label">Building Name</label>
+            <input type="text" class="form-control" id="buildingName" name="buildingName" required>
+        </div>
+        <div class="mb-3">
+            <label for="buildingAddress" class="form-label">Address</label>
+            <input type="text" class="form-control" id="buildingAddress" name="buildingAddress" required>
+        </div>
+        <div class="mb-3">
+            <label for="developerOwner" class="form-label">Developer</label>
+            <select id="developerOwner" name="developerOwner" class="form-select" required>
+                <option value="" disabled selected>Select Developer/Owner of the building</option>
+                {% for developer in developers %}
+                    <option value="{{ developer.user_id }}">{{ developer.developer_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="primaryPhone" class="form-label">Primary Phone to Management</label>
+            <input type="text" class="form-control" id="primaryPhone" name="primaryPhone" required>
+        </div>
+        <div class="mb-3">
+            <label for="numFloors" class="form-label">Number of Floors</label>
+            <input type="number" class="form-control" id="numFloors" name="numFloors">
+        </div>
+        <div class="mb-3">
+            <label for="additionalDetails" class="form-label">Additional Details</label>
+            <textarea class="form-control" id="additionalDetails" name="additionalDetails" rows="3"></textarea>
+        </div>
+        <!--
+        <div class="mb-3">
+            <label for="equipment" class="form-label">Add Equipment</label>
+            <select id="equipmentType" name="equipmentType" class="form-select">
+                <option value="elevator">Elevator</option>
+                <option value="hvac">HVAC</option>
+                <option value="generator">Power Generator</option>
+            </select>
+        </div>
+        -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock content %}
+
+
+

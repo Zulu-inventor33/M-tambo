@@ -1,0 +1,63 @@
+{% extends "developer_base.html" %}
+
+{% block title %}Buildings - {{ developer_name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Buildings for {{ developer_name }}</h1>
+
+    {% for building_data in buildings_data %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>{{ building_data.building.name }}</h5>
+            <p>{{ building_data.building.address }}</p>
+            <p>Primary Phone: {{ building_data.building.primary_phone }}</p>
+            <p>Number of Floors: {{ building_data.building.num_floors }}</p>
+            <p>Details: {{ building_data.building.additional_details }}</p>
+        </div>
+
+        <div class="card-body">
+            <h6>Equipment</h6>
+            <ul class="list-group mb-3">
+                {% for equipment in building_data.equipment %}
+                <li class="list-group-item">
+                    <strong>{{ equipment.type }}</strong> - Serial Number: {{ equipment.serial_number }}
+                    <p>Installed on: {{ equipment.installation_date }}</p>
+                </li>
+                {% endfor %}
+                {% if building_data.equipment|length == 0 %}
+                <li class="list-group-item text-muted">No equipment available for this building.</li>
+                {% endif %}
+            </ul>
+
+            <h6>Jobs</h6>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Technician</th>
+                        <th>Status</th>
+                        <th>Scheduled Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in building_data.jobs %}
+                    <tr>
+                        <td>{{ job.description }}</td>
+                        <td>{{ job.technician.user.first_name }} {{ job.technician.user.last_name }}</td>
+                        <td><span class="badge bg-{{ job.status.lower() }}">{{ job.status }}</span></td>
+                        <td>{{ job.scheduled_date.strftime('%Y-%m-%d') }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% if building_data.jobs|length == 0 %}
+                    <tr>
+                        <td colspan="4" class="text-center">No jobs scheduled for this building.</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends "maintenance_base.html" %}
+
+{% block title %}Maintenance Provider Report{% endblock %}
+
+{% block content %}
+    <h1 class="h2">Maintenance Provider Report</h1>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <div class="container mt-3">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Job Status Overview -->
+    <h3>Job Status Overview</h3>
+    <canvas id="jobStatusChart" width="400" height="200"></canvas>
+
+    <!-- Technicians Assigned to Pending Jobs -->
+    <h3 class="mt-4">Technicians Assigned to Pending Jobs</h3>
+    <canvas id="technicianChart" width="400" height="200"></canvas>
+
+    <!-- Additional Data Below the Charts -->
+    <div class="mt-4">
+        <h4>Summary</h4>
+        <ul>
+            <li>Total Completed Jobs: {{ completed_jobs_count }}</li>
+            <li>Total Pending Jobs: {{ pending_jobs_count }}</li>
+            <li>Technicians with Pending Jobs: {{ technician_names|length }}</li>
+        </ul>
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Debug: Check values
+            console.log('Technician Names:', {{ technician_names|tojson }});
+            console.log('Technician Job Counts:', {{ technician_job_counts|tojson }});
+            
+            // Job Status Chart (Bar Chart for Technicians)
+            var ctx = document.getElementById('jobStatusChart').getContext('2d');
+            var jobStatusChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{ technician_names|tojson }},
+                    datasets: [
+                        {
+                            label: 'Completed Jobs',
+                            data: {{ technician_completed_job_counts|tojson }},
+                            backgroundColor: '#36a2eb',
+                            borderColor: '#ffffff',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Pending Jobs',
+                            data: {{ technician_pending_job_counts|tojson }},
+                            backgroundColor: '#ff6384',
+                            borderColor: '#ffffff',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Technicians'
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Jobs'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Technicians Chart
+            var techCtx = document.getElementById('technicianChart').getContext('2d');
+            var technicianChart = new Chart(techCtx, {
+                type: 'bar',
+                data: {
+                    labels: {{ technician_names|tojson }},
+                    datasets: [{
+                        label: 'Jobs Assigned',
+                        data: {{ technician_job_counts|tojson }},
+                        backgroundColor: '#4bc0c0',
+                        borderColor: '#ffffff',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Technicians'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Jobs'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+

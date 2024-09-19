@@ -1,0 +1,64 @@
+{% extends 'Technician_base_Dashboard.html' %}
+
+{% block content %}
+<div class="alerts-section">
+    <style>
+        .alerts-section {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .alerts-section h2 {
+            color: #333;
+        }
+        .alerts-section h3 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .alerts-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .alerts-section li {
+            background-color: #ffffff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .alerts-section .job-details {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+
+    <h2>Alerts</h2>
+
+    <h3>New Jobs</h3>
+    <ul>
+        {% for job in new_jobs %}
+        <li>
+            <strong>Job ID:</strong> {{ job.id }}<br>
+            <strong>Description:</strong> {{ job.description }}<br>
+            <strong>Building:</strong> {{ job.building.name if job.building else 'N/A' }}<br>
+            <strong>Assigned on:</strong> {{ job.assigned_date.strftime('%Y-%m-%d') if job.assigned_date else 'Not Assigned' }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Overdue Jobs</h3>
+    <ul>
+        {% for job in overdue_jobs %}
+        <li>
+            <strong>Job ID:</strong> {{ job.id }}<br>
+            <strong>Description:</strong> {{ job.description }}<br>
+            <strong>Building:</strong> {{ job.building.name if job.building else 'N/A' }}<br>
+            <strong>Assigned on:</strong> {{ job.assigned_date.strftime('%Y-%m-%d') if job.assigned_date else 'Not Assigned' }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

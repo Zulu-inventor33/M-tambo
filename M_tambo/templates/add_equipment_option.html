@@ -1,0 +1,19 @@
+{% extends "maintenance_base.html" %}
+
+{% block title %}Add Equipment Option · M-TAMBO{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>The building has been added successfully.</h1>
+    <p>Please add the various equipments/machinery(e.g Elevators or Power-backup Generators) attached to the building that your company will be maintaining</p>
+    <a href="{{ url_for('add_equipment', building_id=building_id) }}" class="btn btn-primary">Add Equipment Now</a>
+    <a href="{{ url_for('Maintenance_company_dashboard') }}" class="btn btn-secondary">Add Equipment Later</a>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+<!-- Any additional scripts specific to this page can be added here -->
+{% endblock scripts %}
+
+

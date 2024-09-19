@@ -1,0 +1,48 @@
+{% extends 'maintenance_base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ company_name }}</h1>
+    <h3>Jobs on {{ filter_date }}</h3>
+    
+
+    <div class="card mb-4">
+        <div class="card-header">Filtered Projects</div>
+        <div class="card-body">
+            <form method="post" class="mb-3">
+                <div class="input-group">
+                    <input type="date" name="filter-date" class="form-control" required>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </form>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Job ID</th>
+                        <th>Building</th>
+                        <th>Technician</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in filtered_jobs %}
+                    <tr>
+                        <td>{{ job.id }}</td>
+                        <td>{{ job.building.name }}</td>
+                        <td>{{ job.technician.user.first_name }} {{ job.technician.user.last_name }}</td>
+                        <td><span class="badge bg-{{ job.status.lower() }}">{{ job.status }}</span></td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4">No jobs found for this date.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

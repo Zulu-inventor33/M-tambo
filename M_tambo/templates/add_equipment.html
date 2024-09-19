@@ -1,0 +1,50 @@
+{% extends "maintenance_base.html" %}
+
+{% block title %}Add Equipment · M-TAMBO{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Add Equipment to Building: <span class="building_name">{{ building.name }}</span></h1>
+    <form method="post" action="{{ url_for('submit_equipment') }}">
+        <input type="hidden" name="buildingId" value="{{ building.id }}">
+        
+        <div class="mb-3">
+            <label for="equipmentType" class="form-label">Equipment Type</label>
+            <select name="equipmentType" class="form-select" required>
+                <option value="elevators">Elevator</option>
+                <option value="HVAC">HVAC</option>
+                <option value="generators">Power Generator</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="equipmentUsername" class="form-label">Equipment Username(e.g Lift1, generator2)</label>
+            <input type="text" class="form-control" id="equipmentUsername" name="equipmentUsername" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="serialNumber" class="form-label">Serial Number</label>
+            <input type="text" class="form-control" id="serialNumber" name="serialNumber" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="installationDate" class="form-label">Installation Date</label>
+            <input type="date" class="form-control" id="installationDate" name="installationDate" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="equipmentDetails" class="form-label">Additional Details</label>
+            <textarea class="form-control" id="equipmentDetails" name="equipmentDetails"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Add Equipment</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+<!-- Additional scripts for this page can be added here if necessary -->
+{% endblock scripts %}

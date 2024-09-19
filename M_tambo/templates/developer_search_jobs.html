@@ -1,0 +1,47 @@
+{% extends "developer_base.html" %}
+
+{% block title %}Jobs Scheduled for Today - {{ current_user.first_name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Jobs Scheduled for {{ selected_date if selected_date else 'Today' }}</h1>
+
+    {% if jobs %}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Building</th>
+                        <th>Type of Job</th>
+                        <th>Company</th>
+                        <th>Technician</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in jobs %}
+                    <tr class="{{ 'table-success' if job.status == 'Completed' else 'table-warning' if job.status == 'Pending' else 'table-danger' }}">
+                        <td>{{ job.building_name }}</td>
+                        <td>{{ job.job_type }}</td>
+                        <td>{{ job.company_name }}</td>
+                        <td>{{ job.technician_name }}</td>
+                        <td>
+                            <span class="badge badge-{{ 'success' if job.status == 'Completed' else 'warning' if job.status == 'Pending' else 'danger' }}">
+                                {{ job.status }}
+                            </span>
+                        </td>
+                        <td>
+                            <!-- Actions like view details, edit, etc. -->
+                            <a href="{{ url_for('view_job', job_id=job.id) }}" class="btn btn-info btn-sm">View</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No jobs found for this date.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends 'Technician_base_Dashboard.html' %}
+
+{% block title %}My Schedule{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ current_user.first_name }} {{ current_user.last_name }}'s Maintenace Jobs</h1>
+    <hr>
+    <h2>Week of {{ (today - timedelta(days=today.weekday())).strftime('%B %d, %Y') }}</h2>
+
+    <div class="mb-4">
+        <h3>Pending Jobs</h3>
+        {% if pending_jobs %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Scheduled Date</th>
+                        <th>Building</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in pending_jobs %}
+                    <tr>
+                        <td>{{ job.scheduled_date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ job.building.name }}</td>
+                        <td>{{ job.description }}</td>
+                        <td>
+                            <form action="{{ url_for('mark_job_done', job_id=job.id) }}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-sm btn-success">Mark as Done</button>
+                            </form>
+                            <button class="btn btn-sm btn-info">Log Maintenance</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <p>No pending jobs.</p>
+        {% endif %}
+    </div>
+
+    <div class="mb-4">
+        <h3>Completed Jobs</h3>
+        {% if completed_jobs %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Completion Date</th>
+                        <th>Building</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in completed_jobs %}
+                    <tr>
+                        <td>
+                            {% if job.completion_date %}
+                                {{ job.completion_date.strftime('%Y-%m-%d') }}
+                            {% else %}
+                                Not Available
+                            {% endif %}
+                        </td>
+                        <td>{{ job.building.name }}</td>
+                        <td>{{ job.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <p>No completed jobs.</p>
+        {% endif %}
+    </div>
+
+    <div class="mb-4">
+        <h3>Overdue Jobs</h3>
+        {% if overdue_jobs %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Scheduled Date</th>
+                        <th>Building</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in overdue_jobs %}
+                    <tr>
+                        <td>{{ job.scheduled_date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ job.building.name }}</td>
+                        <td>{{ job.description }}</td>
+                        <td><span class="badge bg-danger">Overdue</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <p>No overdue jobs.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+
